@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'boarding_model.dart';
+
 
 class OnBoardingViewBody extends StatelessWidget {
   const OnBoardingViewBody({super.key});
@@ -9,19 +11,17 @@ class OnBoardingViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: PageView.builder(
         itemBuilder: (context, index){
-          return const Column(
+          return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image(image: AssetImage('assets/images/shopping.png')),
-              SizedBox(height: 20),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: Text('title',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+              const Image(image: AssetImage('assets/images/shopping.png')),
+              const SizedBox(height: 20),
+              Align(alignment: Alignment.bottomLeft,
+                child: Text(lst[index].title,
+                  style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
               ),
-              Align(
-                alignment: Alignment.bottomLeft,
-                  child: Text('OnBoarding', style: TextStyle(fontSize: 20),))
+              Align(alignment: Alignment.bottomLeft,
+                  child: Text(lst[index].onBoarding, style: const TextStyle(fontSize: 20),))
             ],
           );
         },
