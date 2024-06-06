@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../../../../core/components.dart';
+import '../../../../login/presentation/views/login_view.dart';
 import 'boarding_model.dart';
 
 
@@ -9,6 +11,8 @@ class OnBoardingViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     PageController controller = PageController();
+    bool isLast = false;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       child: Column(
@@ -16,7 +20,14 @@ class OnBoardingViewBody extends StatelessWidget {
         children: [
           Expanded(
             child: PageView.builder(
-              onPageChanged: (index) {},
+              onPageChanged: (index)
+              {
+                if(index == 2){
+                  isLast = true;
+                }else{
+                  isLast = false;
+                }
+              },
               controller: controller,
               itemBuilder: (context, index){
                 return Column(
@@ -40,19 +51,27 @@ class OnBoardingViewBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SmoothPageIndicator(
-                  controller: controller,
-                  count: lst.length,
+                controller: controller,
+                count: lst.length,
                 effect: const ExpandingDotsEffect(
                   activeDotColor: Colors.blue,
                 ),
               ),
               FloatingActionButton(
                 backgroundColor: Colors.blue,
-                  onPressed: (){},
-                  child: const Icon(Icons.arrow_forward_ios, color: Colors.white,),
+                onPressed: ()
+                {
+                  if(isLast){
+                    navigateTo(context, const LoginView());
+                  }
+                  controller.nextPage(
+                      duration: const Duration(milliseconds: 700),
+                      curve: Curves.decelerate);
+                },
+                child: const Icon(Icons.arrow_forward_ios, color: Colors.white,),
               )
             ],
-          )
+          ),
         ],
       ),
     );
