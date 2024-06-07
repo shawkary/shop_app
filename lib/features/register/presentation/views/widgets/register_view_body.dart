@@ -43,7 +43,9 @@ class RegisterViewBody extends StatelessWidget {
                   CustomButton(
                     onPressed: ()
                     {
-                      if(formKey.currentState!.validate()){}
+                      if(formKey.currentState!.validate()){
+
+                      }
                     },
                     text: 'Register',
                   ),

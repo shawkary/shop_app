@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ibrahim_project/core/utiles/styles.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../../../../core/components.dart';
+import '../../../../../core/utiles/components.dart';
 import '../../../../login/presentation/views/login_view.dart';
 import 'boarding_model.dart';
 
@@ -37,10 +38,10 @@ class OnBoardingViewBody extends StatelessWidget {
                     const SizedBox(height: 20),
                     Align(alignment: Alignment.bottomLeft,
                       child: Text(lst[index].title,
-                        style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+                        style: Styles.textStyle30),
                     ),
                     Align(alignment: Alignment.bottomLeft,
-                        child: Text(lst[index].onBoarding, style: const TextStyle(fontSize: 20),))
+                        child: Text(lst[index].onBoarding, style: Styles.textStyle20))
                   ],
                 );
               },
