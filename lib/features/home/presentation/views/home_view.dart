@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/bottom_nav_bar.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/category_screen.dart';
 import 'package:ibrahim_project/features/home/presentation/views/widgets/custom_app_bar.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/favorites_screen.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/product_screen.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/settings_screen.dart';
 
 
 
@@ -9,13 +14,16 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> screens = [
-      // BusinessScreen(),
-      // ScienceScreen(),
-      // SportsScreen(),
+      const ProductScreen(),
+      const CategoryScreen(),
+      const FavoriteScreen(),
+      const SettingsScreen(),
     ];
+    int currentIndex = 0;
     return Scaffold(
       appBar: customAppBar(context),
-      body: ,
+      body: screens[currentIndex],
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }
