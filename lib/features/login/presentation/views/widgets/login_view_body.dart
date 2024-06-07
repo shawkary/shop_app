@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ibrahim_project/core/utiles/components.dart';
+import 'package:ibrahim_project/features/home/presentation/views/home_view.dart';
 import 'package:ibrahim_project/features/login/presentation/views/widgets/custom_button.dart';
 import 'package:ibrahim_project/features/register/presentation/views/register_view.dart';
 import 'custom_text_field.dart';
@@ -34,7 +35,7 @@ class LoginViewBody extends StatelessWidget {
                     onPressed: ()
                     {
                       if(formKey.currentState!.validate()){
-
+                        navigateTo(context, const HomeView());
                       }
                     },
                     text: 'Login',

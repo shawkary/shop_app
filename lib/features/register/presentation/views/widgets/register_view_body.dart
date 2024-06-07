@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ibrahim_project/core/utiles/components.dart';
+import 'package:ibrahim_project/features/home/presentation/views/home_view.dart';
 import '../../../../login/presentation/views/widgets/custom_button.dart';
 import '../../../../login/presentation/views/widgets/custom_text_field.dart';
 
@@ -44,7 +46,7 @@ class RegisterViewBody extends StatelessWidget {
                     onPressed: ()
                     {
                       if(formKey.currentState!.validate()){
-
+                        navigateTo(context, const HomeView());
                       }
                     },
                     text: 'Register',
@@ -56,3 +58,5 @@ class RegisterViewBody extends StatelessWidget {
     );
   }
 }
+
+// todo (git commit -m "add home_view")
