@@ -58,5 +58,3 @@ class RegisterViewBody extends StatelessWidget {
     );
   }
 }
-
-// todo (git commit -m "add home_view")
