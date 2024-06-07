@@ -19,11 +19,14 @@ class LoginViewBody extends StatelessWidget {
                 children: [
                   const CustomTextFormField(
                     prefixIcon: Icons.email,
+                    keyboardType: TextInputType.emailAddress,
                     label: 'Email',
                   ),
                   const SizedBox(height: 20),
                   const CustomTextFormField(
                     prefixIcon: Icons.lock,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
                     label: 'Password',
                   ),
                   const SizedBox(height: 40),

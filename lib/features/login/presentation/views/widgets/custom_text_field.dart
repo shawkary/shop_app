@@ -5,10 +5,14 @@ class CustomTextFormField extends StatelessWidget {
     super.key,
     this.prefixIcon,
     this.label = '',
+    this.keyboardType,
+    this.obscureText = false,
   });
 
   final IconData? prefixIcon;
   final String label;
+  final TextInputType? keyboardType;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +25,8 @@ class CustomTextFormField extends StatelessWidget {
           }
           return null;
         },
+        keyboardType: keyboardType,
+        obscureText: obscureText,
         decoration: InputDecoration(
             border: const OutlineInputBorder(),
             label: Text(label),
