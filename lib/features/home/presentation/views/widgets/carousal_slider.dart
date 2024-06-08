@@ -18,9 +18,11 @@ class CustomCarousalSlider extends StatelessWidget {
             return Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
-                    color: Colors.amber
+                    color: Colors.amber,
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                      image: NetworkImage('https://i.natgeofe.com/k/63b1a8a7-0081-493e-8b53-81d01261ab5d/red-panda-full-body_4x3.jpg'))
                 ),
-                child: Text('text $i', style: const TextStyle(fontSize: 16.0),)
             );
           },
         );

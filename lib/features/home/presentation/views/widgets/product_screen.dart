@@ -1,6 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ibrahim_project/core/utiles/styles.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/products_list_view.dart';
 
 import 'carousal_slider.dart';
 import 'category_list_view.dart';
@@ -15,8 +15,11 @@ class ProductScreen extends StatelessWidget {
         children: [
           CustomCarousalSlider(),
           SizedBox(height: 10),
-          Text('Categories', style: Styles.textStyle25,),
-          CategoryListView()
+          Text('  Categories', style: Styles.textStyle25,),
+          CategoryListView(),
+          SizedBox(height: 10),
+          Text('  Products', style: Styles.textStyle25,),
+          ProductsListView()
         ]
     );
   }
