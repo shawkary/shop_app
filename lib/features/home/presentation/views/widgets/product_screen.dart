@@ -16,6 +16,7 @@ class ProductScreen extends StatelessWidget {
           CustomCarousalSlider(),
           SizedBox(height: 10),
           Text('Categories', style: Styles.textStyle25,),
+          CategoryListView()
         ]
     );
   }
