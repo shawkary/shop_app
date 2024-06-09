@@ -5,10 +5,12 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     this.text = '',
+    this.color = Colors.blue,
   });
 
   final void Function()? onPressed;
   final String text;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class CustomButton extends StatelessWidget {
       child: MaterialButton(
         minWidth: double.infinity,
         height: 60,
-        color: Colors.blue,
+        color: color,
         onPressed: onPressed,
         child: Text(text, style: const TextStyle(
           color: Colors.white,

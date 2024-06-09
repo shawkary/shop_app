@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ibrahim_project/core/utiles/styles.dart';
 
+
 class FavoriteView extends StatelessWidget {
   const FavoriteView({super.key});
 
@@ -9,7 +10,7 @@ class FavoriteView extends StatelessWidget {
     return ListView.builder(
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.only(top: 8.0, left: 7),
+            padding: const EdgeInsets.only(top: 8.0, left: 7),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -29,8 +30,10 @@ class FavoriteView extends StatelessWidget {
                         const SizedBox(width: 5),
                         Text('old price' , style: Styles.textStyle16.copyWith(
                             color: Colors.grey, decoration: TextDecoration.lineThrough)),
-                        SizedBox(width: 50),
-                        IconButton(onPressed: (){}, icon: Icon(Icons.favorite, size: 20, color: Colors.grey,))
+                        const SizedBox(width: 50),
+                        IconButton(
+                            onPressed: (){},
+                            icon: const Icon(Icons.favorite, size: 20, color: Colors.grey,))
                       ],
                     ),
                   ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ibrahim_project/features/home/presentation/views/widgets/category_view.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/category_view/category_view.dart';
 import 'package:ibrahim_project/features/home/presentation/views/widgets/custom_app_bar.dart';
-import 'package:ibrahim_project/features/home/presentation/views/widgets/favorites_view.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/favorite_view/favorite_view.dart';
 import 'package:ibrahim_project/features/home/presentation/views/widgets/product_view/product_view.dart';
-import 'package:ibrahim_project/features/home/presentation/views/widgets/settings_view.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/settings_view/settings_view.dart';
 
 
 
