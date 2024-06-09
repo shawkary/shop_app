@@ -10,5 +10,4 @@ class LoginRepoImpl implements LoginRepo
     // TODO: implement postEmailAndPassword
     throw UnimplementedError();
   }
-
 }
