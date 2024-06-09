@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({super.key});
+class FavoriteView extends StatelessWidget {
+  const FavoriteView({super.key});
 
   @override
   Widget build(BuildContext context) {

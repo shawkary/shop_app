@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ibrahim_project/features/home/presentation/views/widgets/category_screen.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/category_view.dart';
 import 'package:ibrahim_project/features/home/presentation/views/widgets/custom_app_bar.dart';
-import 'package:ibrahim_project/features/home/presentation/views/widgets/favorites_screen.dart';
-import 'package:ibrahim_project/features/home/presentation/views/widgets/product_screen.dart';
-import 'package:ibrahim_project/features/home/presentation/views/widgets/settings_screen.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/favorites_view.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/product_view/product_view.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/settings_view.dart';
 
 
 
@@ -18,10 +18,10 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
     int currentIndex = 0;
     List<Widget> screens = [
-      const ProductScreen(),
-      const CategoryScreen(),
-      const FavoriteScreen(),
-      const SettingsScreen(),
+      const ProductView(),
+      const CategoryView(),
+      const FavoriteView(),
+      const SettingsView(),
     ];
 
   @override
