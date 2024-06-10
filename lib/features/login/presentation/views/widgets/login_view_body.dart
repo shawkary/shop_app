@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:ibrahim_project/core/utiles/components.dart';
-import 'package:ibrahim_project/features/home/presentation/views/home_view.dart';
-import 'package:ibrahim_project/core/custom_widgets/custom_button.dart';
 import 'package:ibrahim_project/features/register/presentation/views/register_view.dart';
 import '../../../../../core/custom_widgets/custom_text_field.dart';
+import 'custom_login_body.dart';
 
 
-class LoginViewBody extends StatelessWidget {
+class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
-  static final formKey = GlobalKey<FormState>();
 
+  @override
+  State<LoginViewBody> createState() => _LoginViewBodyState();
+}
+
+class _LoginViewBodyState extends State<LoginViewBody> {
+   final formKey = GlobalKey<FormState>();
+   final emailController = TextEditingController();
+   final passwordController = TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -18,28 +30,23 @@ class LoginViewBody extends StatelessWidget {
               key: formKey,
               child: Column(
                 children: [
-                  const CustomTextFormField(
+                  CustomTextFormField(
+                    controller: emailController,
                     prefixIcon: Icons.email,
                     keyboardType: TextInputType.emailAddress,
                     label: 'Email',
                   ),
                   const SizedBox(height: 20),
-                  const CustomTextFormField(
+                  CustomTextFormField(
+                    controller: passwordController,
                     prefixIcon: Icons.lock,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     label: 'Password',
                   ),
                   const SizedBox(height: 40),
-                  CustomButton(
-                    onPressed: ()
-                    {
-                      if(formKey.currentState!.validate()){
-                        navigateTo(context, const HomeView());
-                      }
-                    },
-                    text: 'Login',
-                  ),
+                  CustomLoginButton(
+                      emailController, passwordController),
                   const SizedBox(height: 10),
                   Padding(padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: Row(
@@ -49,7 +56,8 @@ class LoginViewBody extends StatelessWidget {
                             onPressed: () {
                               navigateTo(context, const RegisterView());
                             },
-                            child: const Text('Register', style: TextStyle(color: Colors.blue),)),
+                            child: const Text('Register',
+                              style: TextStyle(color: Colors.blue),)),
                       ],
                     ),
                   )

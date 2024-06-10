@@ -6,6 +6,7 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.label = '',
     this.keyboardType,
+    this.controller,
     this.obscureText = false,
   });
 
@@ -13,6 +14,7 @@ class CustomTextFormField extends StatelessWidget {
   final String label;
   final TextInputType? keyboardType;
   final bool obscureText;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class CustomTextFormField extends StatelessWidget {
           }
           return null;
         },
+        controller: controller,
         keyboardType: keyboardType,
         obscureText: obscureText,
         decoration: InputDecoration(

@@ -2,23 +2,23 @@ import 'package:dio/dio.dart';
 
 class DioHelper
 {
-  DioHelper(this.dio);
-  final Dio dio;
+  DioHelper(this._dio);
+  final Dio _dio;
 
   final _baseUrl = 'https://student.valuxapps.com/api/';
   
-  Future<Map<String, dynamic>> postData({
+  Future<Response> postData({
     required String endPoint,
     query,
+    required Map<String, dynamic> data,
   })async {
-    var response = await dio.post('$_baseUrl$endPoint', queryParameters: query);
-    return response.data;
+    return await _dio.post('$_baseUrl$endPoint', queryParameters: query, data: data);
   }
 
   Future<Map<String, dynamic>> getData({
     required String endPoint,
   })async {
-    var response = await dio.get('$_baseUrl$endPoint');
+    var response = await _dio.get('$_baseUrl$endPoint');
     return response.data;
   }
 }

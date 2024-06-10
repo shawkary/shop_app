@@ -11,5 +11,5 @@ class SuccessLoginState extends LoginStates {
 }
 class ErrorLoginState extends LoginStates {
   final String errMessage;
-  ErrorLoginState({required this.errMessage});
+  ErrorLoginState(this.errMessage);
 }
