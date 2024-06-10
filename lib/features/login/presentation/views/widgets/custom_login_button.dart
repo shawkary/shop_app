@@ -29,7 +29,10 @@ class CustomLoginButton extends StatelessWidget {
           listener: (context, state) {
             if(state is SuccessLoginState){
               if(state.loginModel.status!){
+                toastMsg(msg: state.loginModel.message!);
                 navigateTo(context, const HomeView());
+              }else{
+                toastMsg(msg: state.loginModel.message!, backgroundColor: Colors.red);
               }
             }
           },

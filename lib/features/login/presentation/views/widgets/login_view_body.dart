@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ibrahim_project/core/utiles/components.dart';
 import 'package:ibrahim_project/features/register/presentation/views/register_view.dart';
 import '../../../../../core/custom_widgets/custom_text_field.dart';
-import 'custom_login_body.dart';
+import 'custom_login_button.dart';
 
 
 class LoginViewBody extends StatefulWidget {
@@ -45,8 +45,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     label: 'Password',
                   ),
                   const SizedBox(height: 40),
-                  CustomLoginButton(
-                      emailController, passwordController),
+                  CustomLoginButton(emailController, passwordController),
                   const SizedBox(height: 10),
                   Padding(padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: Row(

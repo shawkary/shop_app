@@ -12,7 +12,7 @@ class LoginCubit extends Cubit<LoginStates>
   final DioHelper dio;
 
 
-  Future postLogin({
+  Future<void> postLogin({
     required String email,
     required String password,
 })async{
@@ -26,13 +26,10 @@ class LoginCubit extends Cubit<LoginStates>
     ).then((value){
       LoginModel loginModel;
       loginModel = LoginModel.fromJson(value.data);
-      print(loginModel.status);
       emit(SuccessLoginState(loginModel));
     }).catchError((e){
       emit(ErrorLoginState(e.toString()));
     });
 
   }
-
-
 }
