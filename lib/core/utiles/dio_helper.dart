@@ -11,7 +11,13 @@ class DioHelper
     required String endPoint,
     query,
     required Map<String, dynamic> data,
+    String lang = 'en',
+    token,
   })async {
+    _dio.options.headers = {
+      'lang': lang,
+      'Authorization': token,
+    };
     return await _dio.post('$_baseUrl$endPoint', queryParameters: query, data: data);
   }
 

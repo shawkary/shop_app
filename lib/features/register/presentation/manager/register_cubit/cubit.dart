@@ -17,10 +17,13 @@ class RegisterCubit extends Cubit<RegisterStates>
     required String password,
     required String name,
     required String phone,
+    String? token,
   })async{
     emit(LoadingRegisterState());
     dio.postData(
       endPoint: 'register',
+      lang: 'en',
+      token: token,
       data: {
         'email': email,
         'password': password,

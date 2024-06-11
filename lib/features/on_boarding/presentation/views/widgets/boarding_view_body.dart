@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ibrahim_project/core/utiles/cache_helper.dart';
 import 'package:ibrahim_project/core/utiles/styles.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../../core/utiles/components.dart';
@@ -24,6 +25,7 @@ class OnBoardingViewBody extends StatelessWidget {
               onPageChanged: (index)
               {
                 if(index == 2){
+                  CacheHelper.saveData(key: 'isLast', value: true);
                   isLast = true;
                 }else{
                   isLast = false;
