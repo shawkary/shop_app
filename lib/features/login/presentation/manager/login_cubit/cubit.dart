@@ -15,13 +15,11 @@ class LoginCubit extends Cubit<LoginStates>
   Future<void> postLogin({
     required String email,
     required String password,
-    String? token,
 })async{
     emit(LoadingLoginState());
     dio.postData(
         endPoint: 'login',
         lang: 'en',
-        token: token,
         data: {
           'email': email,
           'password': password,

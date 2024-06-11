@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ibrahim_project/core/utiles/cache_helper.dart';
+import 'package:ibrahim_project/features/home/presentation/views/home_view.dart';
 import 'package:ibrahim_project/features/on_boarding/presentation/views/boarding_view.dart';
 import 'constants.dart';
 import 'core/utiles/components.dart';
@@ -13,9 +14,14 @@ void main()async{
   Bloc.observer = MyBlocObserver();
 
   isLast = CacheHelper.getData(key: 'isLast');
+  token = CacheHelper.getData(key: 'token');
   Widget widget;
   if(isLast != null){
-    widget = const LoginView();
+    if(token != null){
+      widget = const HomeView();
+    }else{
+      widget = const LoginView();
+    }
   }else{
     widget = const OnBoardingView();
   }

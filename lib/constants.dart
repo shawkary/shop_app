@@ -1,1 +1,3 @@
 bool? isLast;
+
+String? token;
