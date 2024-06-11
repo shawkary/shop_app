@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ibrahim_project/core/utiles/cache_helper.dart';
 import 'package:ibrahim_project/features/on_boarding/presentation/views/boarding_view.dart';
 import 'core/utiles/components.dart';
 
 
-void main(){
+void main()async{
+  WidgetsFlutterBinding.ensureInitialized();
+  CacheHelper.init();
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
