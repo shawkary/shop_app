@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ibrahim_project/core/utiles/cache_helper.dart';
@@ -5,6 +6,9 @@ import 'package:ibrahim_project/features/home/presentation/views/home_view.dart'
 import 'package:ibrahim_project/features/on_boarding/presentation/views/boarding_view.dart';
 import 'constants.dart';
 import 'core/utiles/components.dart';
+import 'core/utiles/dio_helper.dart';
+import 'features/home/data/repos/home_repo_impl.dart';
+import 'features/home/presentation/manager/product_cubit/cubit.dart';
 import 'features/login/presentation/views/login_view.dart';
 
 
@@ -34,9 +38,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: widget,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => HomeCubit(HomeRepoImpl(DioHelper(Dio())))..fetchProductData(),)
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: widget,
+      ),
     );
   }
 }

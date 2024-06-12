@@ -1,4 +1,6 @@
-import 'package:ibrahim_project/features/home/data/model/HomeModel.dart';
+import 'package:ibrahim_project/features/home/data/model/product_model/Banners.dart';
+import 'package:ibrahim_project/features/home/data/model/product_model/HomeModel.dart';
+
 
 abstract class HomeStates {}
 
