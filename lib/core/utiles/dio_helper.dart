@@ -23,7 +23,11 @@ class DioHelper
 
   Future<Map<String, dynamic>> getData({
     required String endPoint,
+    String lang = 'en',
   })async {
+    _dio.options.headers = {
+      'lang': lang,
+    };
     var response = await _dio.get('$_baseUrl$endPoint');
     return response.data;
   }
