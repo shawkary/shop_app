@@ -46,7 +46,7 @@ class CustomGridViewItem extends StatelessWidget {
                       product.name!,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Styles.textStyle14,
+                      style: Styles.textStyle16,
                     ),
                     Text(
                       product.description!,
