@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ibrahim_project/core/utiles/cache_helper.dart';
 import 'package:ibrahim_project/features/home/presentation/manager/category_cubit/cubit.dart';
+import 'package:ibrahim_project/features/home/presentation/manager/favorite_cubit/cubit.dart';
 import 'package:ibrahim_project/features/home/presentation/views/home_view.dart';
 import 'package:ibrahim_project/features/on_boarding/presentation/views/boarding_view.dart';
 import 'constants.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => HomeCubit(HomeRepoImpl(DioHelper(Dio())))..fetchProductData(),),
         BlocProvider(create: (context) => CategoryCubit(HomeRepoImpl(DioHelper(Dio())))..fetchCategoryData(),),
+        BlocProvider(create: (context) => FavoriteCubit(HomeRepoImpl(DioHelper(Dio())))..fetchFavoriteData(),),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
