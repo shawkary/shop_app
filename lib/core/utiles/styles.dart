@@ -23,6 +23,7 @@ abstract class Styles {
     fontSize: 20,
     fontWeight: FontWeight.bold,
     decoration: TextDecoration.none,
+    fontStyle: FontStyle.italic
   );
 
   static const textStyle25 = TextStyle(
