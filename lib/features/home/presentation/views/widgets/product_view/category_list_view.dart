@@ -18,23 +18,29 @@ class CategoryListView extends StatelessWidget {
             child: ListView.builder(
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                  child: CachedNetworkImage(
-                    width: 120,
-                      fit: BoxFit.fill,
-                      imageUrl: state.categoryModel.data!.data![index].image!,
-                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
-                  )
-                );
+                    padding: const EdgeInsets.symmetric(horizontal: 1.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(width: .5)
+                      ),
+                      child: CachedNetworkImage(
+                        width: 120,
+                        fit: BoxFit.fill,
+                        imageUrl: state.categoryModel.data!.data![index].image!,
+                        placeholder: (context, url) =>
+                            const Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) =>
+                            const Center(child: Icon(Icons.error)),
+                      ),
+                    ));
               },
               itemCount: state.categoryModel.data!.data!.length,
               scrollDirection: Axis.horizontal,
             ),
           );
-        }else if(state is ErrorCategoryState){
+        } else if (state is ErrorCategoryState) {
           return Center(child: CustomErrorWidget(errMessage: state.errMessage));
-        }else{
+        } else {
           return const Center(child: CircularProgressIndicator());
         }
       },

@@ -17,11 +17,13 @@ class ProductView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomCarousalSlider(),
-                SizedBox(height: 10),
-                Text('  Categories', style: Styles.textStyle25,),
-                CategoryListView(),
+                SizedBox(height: 15),
+                Text('  Categories', style: Styles.textStyle20),
+                Padding(padding: EdgeInsets.symmetric(horizontal: 7.0),
+                  child: CategoryListView(),
+                ),
                 SizedBox(height: 20),
-                Text('  Products', style: Styles.textStyle25,),
+                Text('  Products', style: Styles.textStyle20),
               ]
           ),
         ),
