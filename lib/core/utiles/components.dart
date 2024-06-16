@@ -11,14 +11,13 @@ navigateTo(context, widget){
 
 navigateAndFinish(context, widget){
   return Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => widget),
-      (route) => false,
+    context,
+    MaterialPageRoute(builder: (context) => widget),
+        (route) => false,
   );
 }
 
 //////////////////////////////////////////////////////////
-
 
 class MyBlocObserver extends BlocObserver {
   @override
@@ -47,7 +46,6 @@ class MyBlocObserver extends BlocObserver {
 }
 
 /////////////////////////////////////////////////////////////////
-
 
 void toastMsg({
   required String msg,

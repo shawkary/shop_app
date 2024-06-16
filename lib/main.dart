@@ -21,6 +21,7 @@ void main()async{
 
   isLast = CacheHelper.getData(key: 'isLast');
   token = CacheHelper.getData(key: 'token');
+  print(token);
   Widget widget;
   if(isLast != null){
     if(token != null){
@@ -42,9 +43,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => HomeCubit(HomeRepoImpl(DioHelper(Dio())))..fetchProductData(),),
-        BlocProvider(create: (context) => CategoryCubit(HomeRepoImpl(DioHelper(Dio())))..fetchCategoryData(),),
-        BlocProvider(create: (context) => FavoriteCubit(HomeRepoImpl(DioHelper(Dio())))..fetchFavoriteData(),),
+        BlocProvider<FavoriteCubit>(create: (context) => FavoriteCubit(DioHelper(Dio()))..fetchFavoriteData()),
+        BlocProvider(create: (context) => HomeCubit(HomeRepoImpl(DioHelper(Dio())))..fetchProductData()),
+        BlocProvider(create: (context) => CategoryCubit(HomeRepoImpl(DioHelper(Dio())))..fetchCategoryData()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

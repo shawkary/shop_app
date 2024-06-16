@@ -1,22 +1,28 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ibrahim_project/features/home/data/repos/home_repo.dart';
+import 'package:ibrahim_project/core/utiles/dio_helper.dart';
 import 'package:ibrahim_project/features/home/presentation/manager/favorite_cubit/states.dart';
-
+import '../../../../../constants.dart';
 
 class FavoriteCubit extends Cubit<FavoriteStates> {
-  FavoriteCubit(this.homeRepo) : super(InitialFavoriteState());
+  FavoriteCubit(this.dio) : super(InitialFavoriteState());
 
   static FavoriteCubit get(context) => BlocProvider.of(context);
-  final HomeRepo homeRepo;
+  final DioHelper dio;
 
-  Future<void> fetchFavoriteData() async {
+  List favoriteList = [];
+  void fetchFavoriteData() async {
     emit(LoadingFavoriteState());
-    var result = await homeRepo.fetchFavoriteData();
-
-    result.fold((failure) {
-      emit(ErrorFavoriteState(failure.errorMessage));
-    }, (favoriteModel) {
-      emit(SuccessFavoriteState(favoriteModel));
+   await dio.getData(
+      endPoint: 'favorites',
+      token: token,
+    ).then((value) {
+      for(var item in value['data']['data']){
+        favoriteList.add(item);
+      }
+      emit(SuccessFavoriteState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(ErrorFavoriteState());
     });
   }
 }

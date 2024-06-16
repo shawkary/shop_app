@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ibrahim_project/core/errors/custom_error_widget.dart';
 import 'package:ibrahim_project/core/utiles/styles.dart';
 import 'package:ibrahim_project/features/home/presentation/manager/category_cubit/cubit.dart';
 import 'package:ibrahim_project/features/home/presentation/manager/category_cubit/states.dart';
+
+import '../../../../../../core/errors/custom_error_widget.dart';
+
 
 class CategoryView extends StatelessWidget {
   const CategoryView({super.key});
@@ -30,14 +32,14 @@ class CategoryView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(state.categoryModel.data!.data![index].name!,
+                            Text(state.categoryModel.data!.categoryData![index].name!,
                                 style: Styles.textStyle20.copyWith(fontStyle: FontStyle.italic, color: Colors.blue)),
                             CachedNetworkImage(
                               width: 150,
                               height: 150,
                               fit: BoxFit.fill,
                               imageUrl:
-                                  state.categoryModel.data!.data![index].image!,
+                                  state.categoryModel.data!.categoryData![index].image!,
                             )
                           ],
                         ),
@@ -55,7 +57,7 @@ class CategoryView extends StatelessWidget {
                 ),
               );
             },
-            itemCount: state.categoryModel.data!.data!.length,
+            itemCount: state.categoryModel.data!.categoryData!.length,
           );
         } else if (state is ErrorCategoryState) {
           return Center(child: CustomErrorWidget(errMessage: state.errMessage));

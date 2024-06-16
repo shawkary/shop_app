@@ -2,11 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ibrahim_project/core/custom_widgets/custom_button.dart';
-import 'package:ibrahim_project/core/errors/custom_error_widget.dart';
 import 'package:ibrahim_project/core/utiles/cache_helper.dart';
 import 'package:ibrahim_project/core/utiles/components.dart';
 import 'package:ibrahim_project/features/home/presentation/views/home_view.dart';
 import 'package:ibrahim_project/features/register/presentation/manager/register_cubit/states.dart';
+import '../../../../../core/errors/custom_error_widget.dart';
 import '../../../../../core/utiles/dio_helper.dart';
 import '../../manager/register_cubit/cubit.dart';
 

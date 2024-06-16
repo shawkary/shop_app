@@ -5,8 +5,6 @@ import 'package:ibrahim_project/features/home/presentation/manager/category_cubi
 
 class CategoryCubit extends Cubit<CategoryStates> {
   CategoryCubit(this.homeRepo) : super(InitialCategoryState());
-
-  static CategoryCubit get(context) => BlocProvider.of(context);
   final HomeRepo homeRepo;
 
   Future<void> fetchCategoryData() async {
@@ -19,4 +17,5 @@ class CategoryCubit extends Cubit<CategoryStates> {
       emit(SuccessCategoryState(categoryModel));
     });
   }
+
 }

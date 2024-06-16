@@ -31,9 +31,9 @@ class CustomTextFormField extends StatelessWidget {
         keyboardType: keyboardType,
         obscureText: obscureText,
         decoration: InputDecoration(
-            border: const OutlineInputBorder(),
-            label: Text(label),
-            prefixIcon: Icon(prefixIcon),
+          border: const OutlineInputBorder(),
+          label: Text(label),
+          prefixIcon: Icon(prefixIcon),
         ),
       ),
     );

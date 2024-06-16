@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ibrahim_project/core/errors/custom_error_widget.dart';
 import 'package:ibrahim_project/features/home/presentation/manager/category_cubit/cubit.dart';
 import 'package:ibrahim_project/features/home/presentation/manager/category_cubit/states.dart';
+
+import '../../../../../../core/errors/custom_error_widget.dart';
+
 
 class CategoryListView extends StatelessWidget {
   const CategoryListView({super.key});
@@ -26,7 +28,7 @@ class CategoryListView extends StatelessWidget {
                       child: CachedNetworkImage(
                         width: 120,
                         fit: BoxFit.fill,
-                        imageUrl: state.categoryModel.data!.data![index].image!,
+                        imageUrl: state.categoryModel.data!.categoryData![index].image!,
                         placeholder: (context, url) =>
                             const Center(child: CircularProgressIndicator()),
                         errorWidget: (context, url, error) =>
@@ -34,7 +36,7 @@ class CategoryListView extends StatelessWidget {
                       ),
                     ));
               },
-              itemCount: state.categoryModel.data!.data!.length,
+              itemCount: state.categoryModel.data!.categoryData!.length,
               scrollDirection: Axis.horizontal,
             ),
           );

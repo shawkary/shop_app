@@ -20,10 +20,10 @@ abstract class Styles {
   );
 
   static const textStyle20 = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    decoration: TextDecoration.none,
-    fontStyle: FontStyle.italic
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.italic
   );
 
   static const textStyle25 = TextStyle(

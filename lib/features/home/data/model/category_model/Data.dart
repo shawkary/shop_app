@@ -2,7 +2,7 @@ import 'CategoryData.dart';
 
 class Data {
   num? currentPage;
-  List<CategoryData>? data;
+  List<CategoryData>? categoryData;
   String? firstPageUrl;
   num? from;
   num? lastPage;
@@ -17,9 +17,9 @@ class Data {
   Data.fromJson(dynamic json) {
     currentPage = json['current_page'];
     if (json['data'] != null) {
-      data = [];
+      categoryData = [];
       json['data'].forEach((v) {
-        data?.add(CategoryData.fromJson(v));
+        categoryData?.add(CategoryData.fromJson(v));
       });
     }
     firstPageUrl = json['first_page_url'];
@@ -38,8 +38,8 @@ class Data {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['current_page'] = currentPage;
-    if (data != null) {
-      map['data'] = data?.map((v) => v.toJson()).toList();
+    if (categoryData != null) {
+      map['data'] = categoryData?.map((v) => v.toJson()).toList();
     }
     map['first_page_url'] = firstPageUrl;
     map['from'] = from;

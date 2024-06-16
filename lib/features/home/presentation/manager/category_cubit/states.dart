@@ -1,5 +1,4 @@
-import 'package:ibrahim_project/features/home/data/model/category_model/CategoryModel.dart';
-
+import '../../../data/model/category_model/CategoryModel.dart';
 
 abstract class CategoryStates {}
 

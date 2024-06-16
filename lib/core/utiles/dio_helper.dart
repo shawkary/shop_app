@@ -1,12 +1,14 @@
 import 'package:dio/dio.dart';
 
+
+
 class DioHelper
 {
   DioHelper(this._dio);
   final Dio _dio;
 
   final _baseUrl = 'https://student.valuxapps.com/api/';
-  
+
   Future<Response> postData({
     required String endPoint,
     query,
@@ -24,9 +26,12 @@ class DioHelper
   Future<Map<String, dynamic>> getData({
     required String endPoint,
     String lang = 'en',
+    token,
   })async {
     _dio.options.headers = {
       'lang': lang,
+      'Content-Type':'application/json',
+      'Authorization': token,
     };
     var response = await _dio.get('$_baseUrl$endPoint');
     return response.data;

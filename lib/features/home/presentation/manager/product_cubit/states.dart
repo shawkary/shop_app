@@ -1,16 +1,17 @@
 import 'package:ibrahim_project/features/home/data/model/product_model/HomeModel.dart';
+import '../../../data/model/category_model/CategoryModel.dart';
 
 
 abstract class HomeStates {}
 
 class InitialHomeState extends HomeStates {}
 
-class LoadingHomeState extends HomeStates {}
-class SuccessHomeState extends HomeStates {
+class LoadingProductState extends HomeStates {}
+class SuccessProductState extends HomeStates {
   final HomeModel homeModel;
-  SuccessHomeState(this.homeModel);
+  SuccessProductState(this.homeModel);
 }
-class ErrorHomeState extends HomeStates {
+class ErrorProductState extends HomeStates {
   final String errMessage;
-  ErrorHomeState(this.errMessage);
+  ErrorProductState(this.errMessage);
 }

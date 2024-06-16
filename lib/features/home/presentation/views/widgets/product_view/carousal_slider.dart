@@ -1,27 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ibrahim_project/core/errors/custom_error_widget.dart';
-import 'package:ibrahim_project/features/home/presentation/manager/product_cubit/cubit.dart';
-import 'package:ibrahim_project/features/home/presentation/manager/product_cubit/states.dart';
+import 'package:ibrahim_project/features/home/data/model/product_model/Banners.dart';
 
 
 class CustomCarousalSlider extends StatelessWidget {
-  const CustomCarousalSlider({super.key});
+  const CustomCarousalSlider(this.banner, {super.key});
+  final List<Banners> banner;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeStates>(
-      builder: (BuildContext context, state) {
-        if (state is SuccessHomeState) {
-          return CarouselSlider(
+      return CarouselSlider(
             options: CarouselOptions(
               height: 220.0,
               autoPlay: true,
               viewportFraction: 1,
             ),
-            items: state.homeModel.data!.banners!.map((i) {
+            items: banner.map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return CachedNetworkImage(
@@ -35,13 +30,5 @@ class CustomCarousalSlider extends StatelessWidget {
               );
             }).toList(),
           );
-        } else if (state is ErrorHomeState) {
-          return Center(
-              child: CustomErrorWidget(errMessage: state.errMessage));
-        } else {
-          return const Center(child: CircularProgressIndicator());
-        }
-      },
-    );
   }
 }
