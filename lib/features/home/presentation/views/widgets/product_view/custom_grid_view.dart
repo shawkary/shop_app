@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ibrahim_project/features/home/data/model/product_model/Products.dart';
+import '../../../manager/shop_cubit/cubit.dart';
 import 'custom_grid_view_item.dart';
 
 
 class CustomGridView extends StatelessWidget {
-  const CustomGridView(this.product, {super.key});
+  const CustomGridView(this.product, this.cubit, {super.key});
   final List<Products> product;
+  final ShopCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class CustomGridView extends StatelessWidget {
               mainAxisExtent: 340,
             ),
             itemBuilder: (context, index) {
-              return CustomGridViewItem(product[index]);
+              return CustomGridViewItem(product[index], cubit);
             },
             itemCount: product.length,
           );

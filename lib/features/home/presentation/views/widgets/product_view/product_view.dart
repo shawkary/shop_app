@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ibrahim_project/core/utiles/styles.dart';
-import 'package:ibrahim_project/features/home/presentation/manager/product_cubit/cubit.dart';
-import 'package:ibrahim_project/features/home/presentation/manager/product_cubit/states.dart';
 import '../../../../../../core/errors/custom_error_widget.dart';
+import '../../../manager/shop_cubit/cubit.dart';
+import '../../../manager/shop_cubit/states.dart';
 import 'carousal_slider.dart';
 import 'category_list_view.dart';
 import 'custom_grid_view.dart';
@@ -14,16 +14,17 @@ class ProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeStates>(
+    return BlocBuilder<ShopCubit, ShopStates>(
       builder: (BuildContext context, state) {
-        if (state is SuccessProductState) {
+        ShopCubit cubit = ShopCubit.get(context);
+        if (cubit.homeModel != null) {
           return CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomCarousalSlider(state.homeModel.data!.banners!),
+                      CustomCarousalSlider(cubit.homeModel!.data!.banners!),
                       const SizedBox(height: 15),
                       const Text('  Categories', style: Styles.textStyle20),
                       const CategoryListView(),
@@ -33,7 +34,7 @@ class ProductView extends StatelessWidget {
                 ),
               ),
                SliverToBoxAdapter(
-                child: CustomGridView(state.homeModel.data!.products!),
+                child: CustomGridView(cubit.homeModel!.data!.products!, cubit),
               ),
             ],
           );

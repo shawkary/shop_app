@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ibrahim_project/features/home/presentation/manager/category_cubit/cubit.dart';
-import 'package:ibrahim_project/features/home/presentation/manager/category_cubit/states.dart';
+import '../../../manager/shop_cubit/cubit.dart';
+import '../../../manager/shop_cubit/states.dart';
 
-import '../../../../../../core/errors/custom_error_widget.dart';
 
 
 class CategoryListView extends StatelessWidget {
@@ -12,9 +11,9 @@ class CategoryListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoryCubit, CategoryStates>(
+    return BlocBuilder<ShopCubit, ShopStates>(
       builder: (BuildContext context, state) {
-        if (state is SuccessCategoryState) {
+        ShopCubit cubit = ShopCubit.get(context);
           return SizedBox(
             height: 100,
             child: ListView.builder(
@@ -28,7 +27,7 @@ class CategoryListView extends StatelessWidget {
                       child: CachedNetworkImage(
                         width: 120,
                         fit: BoxFit.fill,
-                        imageUrl: state.categoryModel.data!.categoryData![index].image!,
+                        imageUrl: cubit.categoryModel!.data!.categoryData![index].image!,
                         placeholder: (context, url) =>
                             const Center(child: CircularProgressIndicator()),
                         errorWidget: (context, url, error) =>
@@ -36,15 +35,10 @@ class CategoryListView extends StatelessWidget {
                       ),
                     ));
               },
-              itemCount: state.categoryModel.data!.categoryData!.length,
+              itemCount: cubit.categoryModel!.data!.categoryData!.length,
               scrollDirection: Axis.horizontal,
             ),
           );
-        } else if (state is ErrorCategoryState) {
-          return Center(child: CustomErrorWidget(errMessage: state.errMessage));
-        } else {
-          return const Center(child: CircularProgressIndicator());
-        }
       },
     );
   }

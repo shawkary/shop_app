@@ -2,10 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ibrahim_project/core/utiles/styles.dart';
-import 'package:ibrahim_project/features/home/presentation/manager/category_cubit/cubit.dart';
-import 'package:ibrahim_project/features/home/presentation/manager/category_cubit/states.dart';
+import '../../../manager/shop_cubit/cubit.dart';
+import '../../../manager/shop_cubit/states.dart';
 
-import '../../../../../../core/errors/custom_error_widget.dart';
 
 
 class CategoryView extends StatelessWidget {
@@ -13,16 +12,16 @@ class CategoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoryCubit, CategoryStates>(
+    return BlocBuilder<ShopCubit, ShopStates>(
       builder: (BuildContext context, state) {
-        if (state is SuccessCategoryState) {
+        ShopCubit cubit = ShopCubit.get(context);
           return ListView.builder(
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    border: Border.all(width: .2, color: Colors.red)
+                      border: Border.all(width: .2, color: Colors.red)
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -32,14 +31,16 @@ class CategoryView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(state.categoryModel.data!.categoryData![index].name!,
-                                style: Styles.textStyle20.copyWith(fontStyle: FontStyle.italic, color: Colors.blue)),
+                            Text(cubit.categoryModel!.data!.categoryData![index].name!,
+                                style: Styles.textStyle20.copyWith(
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.blue)),
                             CachedNetworkImage(
                               width: 150,
                               height: 150,
                               fit: BoxFit.fill,
                               imageUrl:
-                                  state.categoryModel.data!.categoryData![index].image!,
+                              cubit.categoryModel!.data!.categoryData![index].image!
                             )
                           ],
                         ),
@@ -57,13 +58,8 @@ class CategoryView extends StatelessWidget {
                 ),
               );
             },
-            itemCount: state.categoryModel.data!.categoryData!.length,
+            itemCount: cubit.categoryModel!.data!.categoryData!.length,
           );
-        } else if (state is ErrorCategoryState) {
-          return Center(child: CustomErrorWidget(errMessage: state.errMessage));
-        } else {
-          return const Center(child: CircularProgressIndicator());
-        }
       },
     );
   }
