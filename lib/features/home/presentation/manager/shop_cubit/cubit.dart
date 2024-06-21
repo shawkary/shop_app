@@ -3,6 +3,7 @@ import 'package:ibrahim_project/features/home/data/model/category_model/Category
 import 'package:ibrahim_project/features/home/data/model/product_model/HomeModel.dart';
 import 'package:ibrahim_project/features/home/data/repos/home_repo.dart';
 import 'package:ibrahim_project/features/home/presentation/manager/shop_cubit/states.dart';
+import '../../../../login/data/model/LoginModel.dart';
 import '../../../data/model/favorite_model/FavoriteList.dart';
 
 
@@ -12,12 +13,14 @@ class ShopCubit extends Cubit<ShopStates> {
   static ShopCubit get(context) => BlocProvider.of(context);
 
   HomeModel? homeModel;
+  String? errProduct;
   Future<void> fetchProductData() async {
     emit(LoadingProductState());
     var result = await homeRepo.fetchProductData();
 
     result.fold((failure) {
-      emit(ErrorProductState(failure.errorMessage));
+      errProduct = failure.errorMessage;
+      emit(ErrorProductState());
     }, (homeModel) {
       this.homeModel = homeModel;
       emit(SuccessProductState());
@@ -27,12 +30,14 @@ class ShopCubit extends Cubit<ShopStates> {
   //////////////////////////////////////////////////////////////
 
   CategoryModel? categoryModel;
+  String? errCategory;
   Future<void> fetchCategoryData() async {
     emit(LoadingCategoryState());
     var result = await homeRepo.fetchCategoryData();
 
     result.fold((failure) {
-      emit(ErrorCategoryState(failure.errorMessage));
+      errCategory = failure.errorMessage;
+      emit(ErrorCategoryState());
     }, (categoryModel) {
       this.categoryModel = categoryModel;
       emit(SuccessCategoryState());
@@ -42,15 +47,34 @@ class ShopCubit extends Cubit<ShopStates> {
   ///////////////////////////////////////////////////////////////
 
   List<FavoriteList>? favorite;
+  String? errFavorite;
   Future<void> fetchFavoritesData() async {
     emit(LoadingFavoriteState());
     var result = await homeRepo.fetchFavoriteData();
 
     result.fold((failure) {
-      emit(ErrorFavoriteState(failure.errorMessage));
+      errFavorite = failure.errorMessage;
+      emit(ErrorFavoriteState());
     }, (favorite) {
       this.favorite = favorite;
       emit(SuccessFavoriteState());
+    });
+  }
+
+  //////////////////////////////////////////////////////////////
+
+  LoginModel? loginModel;
+  String? errProfile;
+  Future<void> fetchProfileData() async {
+    emit(LoadingProfileState());
+    var result = await homeRepo.fetchProfileData();
+
+    result.fold((failure) {
+      errProfile = failure.errorMessage;
+      emit(ErrorProfileState());
+    }, (loginModel) {
+      this.loginModel = loginModel;
+      emit(SuccessProfileState());
     });
   }
 
@@ -62,7 +86,7 @@ class ShopCubit extends Cubit<ShopStates> {
   }){
     emit(LoadingAddFavoriteState());
     homeRepo.addOrRemoveFavorites(productId: productId).then((value){
-      emit(SuccessAddFavoriteState());
+      fetchFavoritesData();
     }).catchError((error){
       emit(ErrorAddFavoriteState());
     });

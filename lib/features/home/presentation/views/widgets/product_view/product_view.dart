@@ -38,8 +38,8 @@ class ProductView extends StatelessWidget {
               ),
             ],
           );
-        }else if(state is ErrorProductState){
-          return Center(child: CustomErrorWidget(errMessage: state.errMessage));
+        }else if(cubit.errProduct != null){
+          return Center(child: CustomErrorWidget(errMessage: cubit.errProduct!));
         }else{
           return const Center(child: CircularProgressIndicator());
         }

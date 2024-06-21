@@ -81,10 +81,10 @@ class CustomGridViewItem extends StatelessWidget {
                         onPressed: () {
                           cubit.addFavorite(productId: product.id!);
                         },
-                        icon: const Icon(
-                          Icons.favorite,
+                        icon: Icon(
+                          product.inFavorites! ? Icons.favorite : Icons.favorite_border,
                           size: 12,
-                          color: Colors.grey,
+                          color: product.inFavorites! ? Colors.red : Colors.black,
                         ))
                   ],
                 ),

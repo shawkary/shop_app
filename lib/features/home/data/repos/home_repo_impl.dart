@@ -5,6 +5,7 @@ import 'package:ibrahim_project/core/utiles/dio_helper.dart';
 import 'package:ibrahim_project/features/home/data/model/category_model/CategoryModel.dart';
 import 'package:ibrahim_project/features/home/data/model/favorite_model/FavoriteList.dart';
 import 'package:ibrahim_project/features/home/data/repos/home_repo.dart';
+import 'package:ibrahim_project/features/login/data/model/LoginModel.dart';
 import '../../../../constants.dart';
 import '../model/product_model/HomeModel.dart';
 
@@ -59,6 +60,25 @@ class HomeRepoImpl implements HomeRepo
         favorite.add(FavoriteList.fromJson(item));
       }
       return right(favorite);
+    } catch (e) {
+      if(e is DioException){
+        return left(ServerFailure.fromDioException(e));
+      }else{
+        return left(ServerFailure(e.toString()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, LoginModel>> fetchProfileData()async {
+    try {
+      var data = await dio.getData(
+          endPoint: 'profile',
+        token: token,
+      );
+      LoginModel loginModel;
+      loginModel = LoginModel.fromJson(data);
+      return right(loginModel);
     } catch (e) {
       if(e is DioException){
         return left(ServerFailure.fromDioException(e));

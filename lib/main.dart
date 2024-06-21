@@ -11,8 +11,7 @@ import 'features/home/data/repos/home_repo_impl.dart';
 import 'features/home/presentation/manager/shop_cubit/cubit.dart';
 import 'features/login/presentation/views/login_view.dart';
 
-
-void main()async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   Bloc.observer = MyBlocObserver();
@@ -21,13 +20,13 @@ void main()async{
   token = CacheHelper.getData(key: 'token');
   print(token);
   Widget widget;
-  if(isLast != null){
-    if(token != null){
+  if (isLast != null) {
+    if (token != null) {
       widget = const HomeView();
-    }else{
+    } else {
       widget = const LoginView();
     }
-  }else{
+  } else {
     widget = const OnBoardingView();
   }
   runApp(MyApp(widget));
@@ -35,17 +34,19 @@ void main()async{
 
 class MyApp extends StatelessWidget {
   const MyApp(this.widget, {super.key});
+
   final Widget widget;
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => ShopCubit(HomeRepoImpl(DioHelper(Dio())))
-          ..fetchProductData()
-          ..fetchCategoryData()
-        ..fetchFavoritesData()),
-        // BlocProvider(create: (context) => FavoriteCubit(HomeRepoImpl(DioHelper(Dio())))..fetchFavoritesData()),
+        BlocProvider(
+            create: (context) => ShopCubit(HomeRepoImpl(DioHelper(Dio())))
+              ..fetchProductData()
+              ..fetchCategoryData()
+              ..fetchFavoritesData()
+              ..fetchProfileData()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
