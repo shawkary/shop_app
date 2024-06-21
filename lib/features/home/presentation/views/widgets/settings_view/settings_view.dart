@@ -12,36 +12,54 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        var nameController = TextEditingController();
+        var emailController = TextEditingController();
+        var phoneController = TextEditingController();
     return BlocBuilder<ShopCubit, ShopStates>(
       builder: (BuildContext context, state) {
         ShopCubit cubit = ShopCubit.get(context);
+        nameController.text = cubit.loginModel!.data!.name!;
+        emailController.text = cubit.loginModel!.data!.email!;
+        phoneController.text = cubit.loginModel!.data!.phone!;
         if (cubit.loginModel != null) {
           return Center(
             child: SingleChildScrollView(
               child: Column(
                 children: [
                    CustomTextFormField(
-                    label: cubit.loginModel!.data!.name!,
+                     controller: nameController,
+                    hintText: cubit.loginModel!.data!.name!,
                     keyboardType: TextInputType.name,
                     prefixIcon: Icons.person,
                   ),
                   const SizedBox(height: 20),
                   CustomTextFormField(
-                    label: cubit.loginModel!.data!.email!,
+                    controller: emailController,
+                    hintText: cubit.loginModel!.data!.email!,
                     keyboardType: TextInputType.emailAddress,
                     prefixIcon: Icons.email,
                   ),
                   const SizedBox(height: 20),
                   CustomTextFormField(
-                    label: cubit.loginModel!.data!.phone!,
+                    controller: phoneController,
+                    hintText: cubit.loginModel!.data!.phone!,
                     keyboardType: TextInputType.phone,
                     prefixIcon: Icons.phone,
                   ),
                   const SizedBox(height: 30),
                   CustomButton(
-                    onPressed: (){},
+                    onPressed: ()
+                    {
+                      cubit.updateProfile(
+                          name: nameController.text,
+                          email: emailController.text,
+                          phone: phoneController.text,
+                      );
+                    },
                     text: 'Update',
                   ),
+                  if(state is LoadingUpdateProfileState)
+                    const LinearProgressIndicator(),
                   const SizedBox(height: 100),
                   CustomButton(
                     onPressed: (){},

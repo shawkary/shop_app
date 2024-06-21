@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ibrahim_project/features/home/data/model/category_model/CategoryModel.dart';
 import 'package:ibrahim_project/features/home/data/model/product_model/HomeModel.dart';
@@ -80,6 +81,26 @@ class ShopCubit extends Cubit<ShopStates> {
 
   //////////////////////////////////////////////////////////////
 
+  String? errUpdateProfile;
+  Future<void> updateProfile({
+    required String name,
+    required String email,
+    required String phone,
+  })async{
+    emit(LoadingUpdateProfileState());
+     var result = await homeRepo.updateProfileData(name, email, phone);
+
+     result.fold((failure){
+       errUpdateProfile = failure.errorMessage;
+       emit(ErrorUpdateProfileState());
+     }, (loginModel){
+       this.loginModel = loginModel;
+       print(loginModel.message);
+       emit(SuccessUpdateProfileState());
+     });
+  }
+
+  //////////////////////////////////////////////////////////////////////
 
   void addFavorite({
     required num productId,

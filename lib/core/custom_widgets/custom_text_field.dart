@@ -4,6 +4,7 @@ class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
     this.prefixIcon,
+    this.hintText = '',
     this.label = '',
     this.keyboardType,
     this.controller,
@@ -11,6 +12,7 @@ class CustomTextFormField extends StatelessWidget {
   });
 
   final IconData? prefixIcon;
+  final String hintText;
   final String label;
   final TextInputType? keyboardType;
   final bool obscureText;
@@ -32,6 +34,7 @@ class CustomTextFormField extends StatelessWidget {
         obscureText: obscureText,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
+          hintText: hintText,
           label: Text(label),
           prefixIcon: Icon(prefixIcon),
         ),

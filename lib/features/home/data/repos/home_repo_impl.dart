@@ -10,79 +10,79 @@ import '../../../../constants.dart';
 import '../model/product_model/HomeModel.dart';
 
 
-class HomeRepoImpl implements HomeRepo
-{
+class HomeRepoImpl implements HomeRepo {
   HomeRepoImpl(this.dio);
+
   DioHelper dio;
 
 
   @override
-  Future<Either<Failure, HomeModel>> fetchProductData()async {
+  Future<Either<Failure, HomeModel>> fetchProductData() async {
     try {
       var data = await dio.getData(endPoint: 'home');
       HomeModel homeModel;
       homeModel = HomeModel.fromJson(data);
       return right(homeModel);
     } catch (e) {
-      if(e is DioException){
+      if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
-      }else{
+      } else {
         return left(ServerFailure(e.toString()));
       }
     }
   }
 
   @override
-  Future<Either<Failure, CategoryModel>> fetchCategoryData()async {
+  Future<Either<Failure, CategoryModel>> fetchCategoryData() async {
     try {
       var data = await dio.getData(endPoint: 'categories');
       CategoryModel categoryModel;
       categoryModel = CategoryModel.fromJson(data);
       return right(categoryModel);
     } catch (e) {
-      if(e is DioException){
+      if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
-      }else{
+      } else {
         return left(ServerFailure(e.toString()));
       }
     }
   }
 
   @override
-  Future<Either<Failure, List<FavoriteList>>> fetchFavoriteData()async {
+  Future<Either<Failure, List<FavoriteList>>> fetchFavoriteData() async {
     try {
       var data = await dio.getData(
-          endPoint: 'favorites',
-          token: token,
+        endPoint: 'favorites',
+        token: token,
       );
       List<FavoriteList> favorite = [];
-      for(var item in data['data']['data']){
+      for (var item in data['data']['data']) {
         favorite.add(FavoriteList.fromJson(item));
       }
       return right(favorite);
     } catch (e) {
-      if(e is DioException){
+      if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
-      }else{
+      } else {
         return left(ServerFailure(e.toString()));
       }
     }
   }
 
   @override
-  Future<Either<Failure, LoginModel>> fetchProfileData()async {
+  Future<Either<Failure, LoginModel>> fetchProfileData() async {
     try {
       var data = await dio.getData(
-          endPoint: 'profile',
+        endPoint: 'profile',
         token: token,
       );
       LoginModel loginModel;
       loginModel = LoginModel.fromJson(data);
       return right(loginModel);
     } catch (e) {
-      if(e is DioException){
+      if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
-      }else{
+      } else {
         return left(ServerFailure(e.toString()));
       }
     }
@@ -91,13 +91,37 @@ class HomeRepoImpl implements HomeRepo
   @override
   Future<void> addOrRemoveFavorites({
     required num productId,
-})async {
+  }) async {
     await dio.postData(
-        endPoint: 'favorites?=',
+      endPoint: 'favorites?=',
+      token: token,
+      data: {
+        'product_id': productId,
+      },
+    );
+  }
+
+  @override
+  Future<Either<Failure, LoginModel>> updateProfileData(name, email, phone,) async {
+    try {
+      var result = await dio.putData(
+        endPoint: 'update-profile',
         token: token,
         data: {
-          'product_id': productId,
+          'name': name,
+          'email': email,
+          'phone': phone,
         },
-    );
+      );
+      LoginModel loginModel;
+      loginModel = LoginModel.fromJson(result.data);
+      return right(loginModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        return left(ServerFailure(e.toString()));
+      }
+    }
   }
 }
