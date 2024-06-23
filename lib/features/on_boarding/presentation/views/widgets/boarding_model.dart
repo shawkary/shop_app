@@ -11,15 +11,15 @@ class BoardingModel
 
 List<BoardingModel> lst = [
   BoardingModel(
-    title: 'title 1',
-    onBoarding: 'onBoarding 1',
+    title: 'Choose Your Product',
+    onBoarding: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   ),
   BoardingModel(
-    title: 'title 2',
-    onBoarding: 'onBoarding 2',
+    title: 'Add to Your Cart',
+    onBoarding: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   ),
   BoardingModel(
-    title: 'title 3',
-    onBoarding: 'onBoarding 3',
+    title: 'Pay by Cart',
+    onBoarding: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   ),
 ];

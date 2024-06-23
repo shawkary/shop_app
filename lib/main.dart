@@ -18,7 +18,6 @@ void main() async {
 
   isLast = CacheHelper.getData(key: 'isLast');
   token = CacheHelper.getData(key: 'token');
-  print(token);
   Widget widget;
   if (isLast != null) {
     if (token != null) {

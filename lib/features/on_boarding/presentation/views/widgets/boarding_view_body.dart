@@ -43,7 +43,9 @@ class OnBoardingViewBody extends StatelessWidget {
                         style: Styles.textStyle30),
                     ),
                     Align(alignment: Alignment.bottomLeft,
-                        child: Text(lst[index].onBoarding, style: Styles.textStyle20))
+                        child: Text(lst[index].onBoarding, style: Styles.textStyle20.copyWith(
+                          color: Colors.grey,
+                        )))
                   ],
                 );
               },
