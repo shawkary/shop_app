@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:ibrahim_project/features/home/data/model/category_model/CategoryModel.dart';
 import 'package:ibrahim_project/features/home/data/model/product_model/HomeModel.dart';
 import 'package:ibrahim_project/features/login/data/model/LoginModel.dart';

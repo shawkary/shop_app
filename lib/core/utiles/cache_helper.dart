@@ -24,4 +24,10 @@ class CacheHelper
   }){
     return sharedPreferences!.get(key);
   }
+
+  static Future<bool> deleteData({
+    required String key,
+}){
+    return sharedPreferences!.remove(key);
+  }
 }

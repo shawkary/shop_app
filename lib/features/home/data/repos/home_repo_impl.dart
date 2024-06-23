@@ -4,6 +4,7 @@ import 'package:ibrahim_project/core/errors/failures.dart';
 import 'package:ibrahim_project/core/utiles/dio_helper.dart';
 import 'package:ibrahim_project/features/home/data/model/category_model/CategoryModel.dart';
 import 'package:ibrahim_project/features/home/data/model/favorite_model/FavoriteList.dart';
+import 'package:ibrahim_project/features/home/data/model/logout_model/LogoutModel.dart';
 import 'package:ibrahim_project/features/home/data/repos/home_repo.dart';
 import 'package:ibrahim_project/features/login/data/model/LoginModel.dart';
 import '../../../../constants.dart';

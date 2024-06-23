@@ -26,7 +26,6 @@ class ErrorProfileState extends ShopStates {}
 
 //////////////////////////////////////////////////////////
 
-class LoadingUpdateProfileState extends ShopStates {}
 class SuccessUpdateProfileState extends ShopStates {}
 class ErrorUpdateProfileState extends ShopStates {}
 
