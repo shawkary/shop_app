@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:ibrahim_project/features/home/data/model/add_remove_favorite/AddFavoriteModel.dart';
 import 'package:ibrahim_project/features/home/data/model/category_model/CategoryModel.dart';
 import 'package:ibrahim_project/features/home/data/model/product_model/HomeModel.dart';
 import 'package:ibrahim_project/features/login/data/model/LoginModel.dart';
@@ -13,5 +14,5 @@ abstract class HomeRepo
   Future<Either<Failure, List<FavoriteList>>> fetchFavoriteData();
   Future<Either<Failure, LoginModel>> fetchProfileData();
   Future<Either<Failure, LoginModel>> updateProfileData(name, email, phone);
-  Future<void> addOrRemoveFavorites({required num productId});
+  Future<Either<Failure, AddFavoriteModel>> addOrRemoveFavorites({required num productId});
 }

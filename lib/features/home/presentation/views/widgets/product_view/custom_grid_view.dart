@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ibrahim_project/features/home/data/model/product_model/Products.dart';
 import '../../../manager/shop_cubit/cubit.dart';
 import 'custom_grid_view_item.dart';
 
 
 class CustomGridView extends StatelessWidget {
-  const CustomGridView(this.product, this.cubit, {super.key});
-  final List<Products> product;
+  const CustomGridView(this.cubit, {super.key});
   final ShopCubit cubit;
 
   @override
   Widget build(BuildContext context) {
-      return GridView.builder(
+        return GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -21,9 +19,9 @@ class CustomGridView extends StatelessWidget {
               mainAxisExtent: 340,
             ),
             itemBuilder: (context, index) {
-              return CustomGridViewItem(product[index], cubit);
+              return CustomGridViewItem(cubit, index);
             },
-            itemCount: product.length,
+            itemCount: cubit.homeModel!.data!.products!.length,
           );
   }
 }

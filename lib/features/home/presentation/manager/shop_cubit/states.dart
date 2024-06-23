@@ -28,8 +28,3 @@ class ErrorProfileState extends ShopStates {}
 
 class SuccessUpdateProfileState extends ShopStates {}
 class ErrorUpdateProfileState extends ShopStates {}
-
-///////////////////////////////////////////////////////////
-
-class LoadingAddFavoriteState extends ShopStates {}
-class ErrorAddFavoriteState extends ShopStates {}

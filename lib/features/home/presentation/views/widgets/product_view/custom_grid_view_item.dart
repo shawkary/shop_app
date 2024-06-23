@@ -1,19 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ibrahim_project/core/utiles/styles.dart';
-import 'package:ibrahim_project/features/home/data/model/product_model/Products.dart';
-
 import '../../../manager/shop_cubit/cubit.dart';
 
 
 class CustomGridViewItem extends StatelessWidget {
-  const CustomGridViewItem(this.product, this.cubit, {super.key});
+  const CustomGridViewItem(this.cubit, this.index, {super.key});
 
-  final Products product;
   final ShopCubit cubit;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    var pro = cubit.homeModel!.data!.products![index];
     return Container(
       decoration: BoxDecoration(
         border: Border.all(width: .1),
@@ -25,7 +24,7 @@ class CustomGridViewItem extends StatelessWidget {
             alignment: AlignmentDirectional.bottomStart,
             children: [
               CachedNetworkImage(
-                imageUrl: product.image!,
+                imageUrl: pro.image!,
                 width: double.infinity,
                 height: 200,
                 fit: BoxFit.fill,
@@ -34,12 +33,12 @@ class CustomGridViewItem extends StatelessWidget {
                 errorWidget: (context, url, error) =>
                     const Center(child: Icon(Icons.error)),
               ),
-              if (product.discount != 0)
+              if (pro.discount != 0)
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   color: Colors.red,
                   child: Text(
-                    'discount: ${product.discount!}',
+                    'discount: ${pro.discount!}',
                     style: const TextStyle(fontSize: 8, color: Colors.white),
                   ),
                 )
@@ -51,13 +50,13 @@ class CustomGridViewItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  product.name!,
+                  pro.name!,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Styles.textStyle16,
                 ),
                 Text(
-                  product.description!,
+                  pro.description!,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Styles.textStyle14.copyWith(color: Colors.grey[600]),
@@ -65,26 +64,30 @@ class CustomGridViewItem extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      '${product.price}',
+                      '${pro.price}',
                       style: Styles.textStyle14.copyWith(color: Colors.red),
                     ),
                     const SizedBox(width: 5),
-                    if (product.discount != 0)
+                    if (pro.discount != 0)
                       Text(
-                        '${product.oldPrice}',
+                        '${pro.oldPrice}',
                         style: Styles.textStyle14.copyWith(
                             color: Colors.grey[700],
                             decoration: TextDecoration.lineThrough),
                       ),
                     const Spacer(),
-                    IconButton(
+                      IconButton(
                         onPressed: () {
-                          cubit.addFavorite(productId: product.id!);
+                          cubit.addFavorite(productId: pro.id!);
+                          Future.delayed(const Duration(seconds: 7), () {
+                          ScaffoldMessenger.of(context).showSnackBar( SnackBar(content: Text(
+                            cubit.model!.message!
+                          )));
+                          },);
                         },
-                        icon: Icon(
-                          product.inFavorites! ? Icons.favorite : Icons.favorite_border,
+                        icon: Icon(pro.inFavorites! ? Icons.favorite : Icons.favorite_border,
                           size: 12,
-                          color: product.inFavorites! ? Colors.red : Colors.black,
+                          color: pro.inFavorites! ? Colors.red : Colors.black,
                         ))
                   ],
                 ),

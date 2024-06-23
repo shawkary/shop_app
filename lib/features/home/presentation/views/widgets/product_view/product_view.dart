@@ -34,7 +34,7 @@ class ProductView extends StatelessWidget {
                 ),
               ),
                SliverToBoxAdapter(
-                child: CustomGridView(cubit.homeModel!.data!.products!, cubit),
+                child: CustomGridView(cubit),
               ),
             ],
           );
